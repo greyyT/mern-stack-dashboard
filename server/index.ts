@@ -25,11 +25,15 @@ app.use('/general', generalRoutes);
 app.use('/management', managementRoutes);
 app.use('/sales', salesRoutes);
 
-// APP
-app.get('/ping', (req: Request, res: Response) => {
-  res.send('pong');
-});
-
-app.listen(8080, () => {
-  console.log('Server running at http://localhost:8080');
-});
+// MONGODB CONNECTION
+console.log('Connecting to MongoDB with mongoose...');
+const PORT = process.env.PORT || 9000;
+mongoose
+  .connect(process.env.DATABASE_URL as string)
+  .then(() => {
+    console.log('Connected Succesfully!');
+    app.listen(PORT, () => console.log(`Server is listening on Port: ${PORT}`));
+  })
+  .catch((error: Error) => {
+    console.log(`${error} did not connect`);
+  });
