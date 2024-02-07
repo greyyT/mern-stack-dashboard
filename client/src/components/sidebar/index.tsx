@@ -4,15 +4,17 @@ import { useLocation } from 'react-router-dom';
 import SidebarHeader from './sidebar-header';
 import { navItems } from '@/utils/constants';
 import SidebarItem from './sidebar-item';
+import SidebarProfile from './sidebar-profile';
 
 interface SidebarProps {
+  user: any;
   isNonMobile: boolean;
   drawerWidth: string;
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Sidebar = ({ isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
+const Sidebar = ({ user, isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
   const { pathname } = useLocation();
   const [active, setActive] = useState('');
   const theme = useTheme() as any;
@@ -49,6 +51,7 @@ const Sidebar = ({ isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOpen }: 
               ))}
             </List>
           </Box>
+          <SidebarProfile user={user} theme={theme} />
         </Drawer>
       )}
     </Box>
