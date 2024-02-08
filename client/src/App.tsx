@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { themeSettings } from './theme';
-import { Dashboard } from './pages';
+import { Dashboard, Products } from './pages';
 import { MainLayout } from './layouts';
 
 const App = () => {
@@ -21,6 +21,7 @@ const App = () => {
             <Route element={<MainLayout />}>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/products" element={<Products />} />
             </Route>
           </Routes>
         </ThemeProvider>
