@@ -4,10 +4,11 @@ import LeftSide from './left-side';
 import RightSide from './right-side';
 
 interface NavbarProps {
+  user: any;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Navbar = ({ setIsSidebarOpen }: NavbarProps) => {
+const Navbar = ({ user, setIsSidebarOpen }: NavbarProps) => {
   const theme = useTheme();
 
   return (
@@ -20,7 +21,7 @@ const Navbar = ({ setIsSidebarOpen }: NavbarProps) => {
     >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         <LeftSide setIsSidebarOpen={setIsSidebarOpen} theme={theme} />
-        <RightSide theme={theme} />
+        <RightSide user={user} theme={theme} />
       </Toolbar>
     </AppBar>
   );

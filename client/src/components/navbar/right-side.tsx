@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
 import FlexBetween from '../flex-between';
-import { IconButton, Theme } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { setMode } from '@/state';
 import { DarkModeOutlined, LightModeOutlined, SettingsOutlined } from '@mui/icons-material';
+import NavbarProfile from './navbar-profile';
 
-const RightSide = ({ theme }: { theme: Theme }) => {
+const RightSide = ({ user, theme }: { user: any; theme: any }) => {
   const dispatch = useDispatch();
 
   return (
@@ -19,6 +20,7 @@ const RightSide = ({ theme }: { theme: Theme }) => {
       <IconButton>
         <SettingsOutlined sx={{ fontSize: '25px' }} />
       </IconButton>
+      <NavbarProfile user={user} />
     </FlexBetween>
   );
 };
