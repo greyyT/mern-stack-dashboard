@@ -2,9 +2,10 @@ import { AppBar, Toolbar, useTheme } from '@mui/material';
 
 import LeftSide from './left-side';
 import RightSide from './right-side';
+import { UserProfile } from '@/types';
 
 interface NavbarProps {
-  user: any;
+  user: UserProfile | object;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

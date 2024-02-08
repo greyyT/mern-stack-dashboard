@@ -1,3 +1,23 @@
+// USER TYPES
+
+export interface UserProfile {
+  _id: string;
+  name: string;
+  email: string;
+  city: string;
+  state: string | null;
+  country: string;
+  occupation: string;
+  phoneNumber: string;
+  transactions: string[];
+  role: string;
+  __v: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// PRODUCT TYPES
+
 interface ProductDailyStat {
   date: string;
   totalSales: number;

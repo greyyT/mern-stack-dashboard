@@ -5,9 +5,10 @@ import SidebarHeader from './sidebar-header';
 import { navItems } from '@/utils/constants';
 import SidebarItem from './sidebar-item';
 import SidebarProfile from './sidebar-profile';
+import { UserProfile } from '@/types';
 
 interface SidebarProps {
-  user: any;
+  user: UserProfile | object;
   isNonMobile: boolean;
   drawerWidth: string;
   isSidebarOpen: boolean;

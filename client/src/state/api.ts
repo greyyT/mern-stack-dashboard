@@ -1,4 +1,4 @@
-import { ProductWithStats } from '@/types';
+import { ProductWithStats, UserProfile } from '@/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const api = createApi({
@@ -9,6 +9,9 @@ export const api = createApi({
     getUser: build.query({
       query: (id: string) => `general/user/${id}`,
       providesTags: ['User'],
+      transformResponse: (res: UserProfile) => {
+        return res;
+      },
     }),
     getProducts: build.query({
       query: () => 'client/products',
