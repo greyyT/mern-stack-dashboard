@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import Product from '../models/Product';
 import ProductStat from '../models/ProductStat';
 import User from '../models/User';
+import Transaction from '../models/Transaction';
 
 export const getProducts = async (req: Request, res: Response) => {
   try {
@@ -31,6 +32,49 @@ export const getCustomers = async (req: Request, res: Response) => {
     const customers = await User.find({ role: 'user' }).select('-password');
 
     res.status(200).json(customers);
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
+};
+
+export const getTransactions = async (req: Request, res: Response) => {
+  try {
+    // sort schema: { "field": "userId", "sort": "desc" }
+    const { page = 1, pageSize = 20, sort = null, search = '' } = req.query;
+
+    let sortFormatted;
+
+    // format sort to this schema: { userId: -1 }
+    if (!Boolean(sort)) {
+      sortFormatted = {};
+    } else {
+      const sortParsed = JSON.parse(sort as string);
+      sortFormatted = {
+        [sortParsed.field]: sortParsed.sort === 'asc' ? 1 : -1,
+      };
+    }
+
+    const transactions = await Transaction.find({
+      $or: [
+        { cost: { $regex: new RegExp(search as string, 'i') } },
+        { userId: { $regex: new RegExp(search as string, 'i') } },
+      ],
+    })
+      .sort(sortFormatted as any)
+      .skip(Number(page) * Number(pageSize))
+      .limit(Number(pageSize));
+
+    const total = await Transaction.countDocuments({
+      $or: [
+        { cost: { $regex: new RegExp(search as string, 'i') } },
+        { userId: { $regex: new RegExp(search as string, 'i') } },
+      ],
+    });
+
+    res.status(200).json({
+      transactions,
+      total,
+    });
   } catch (error) {
     res.status(404).json({ message: error });
   }
