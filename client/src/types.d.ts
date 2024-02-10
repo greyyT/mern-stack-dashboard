@@ -54,3 +54,19 @@ export interface ProductWithStats {
   updatedAt: string;
   stat: ProductStats;
 }
+
+// TRANSACTION TYPES
+interface Transaction {
+  _id: string;
+  userId: string;
+  cost: string;
+  product: string[];
+  __v: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Transactions {
+  transactions: Transaction[];
+  total: number;
+}
