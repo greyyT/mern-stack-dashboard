@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { getCountryISO3 } from '../utils/country-iso-2-to-3';
 import Product from '../models/Product';
 import ProductStat from '../models/ProductStat';
 import User from '../models/User';
@@ -75,6 +76,31 @@ export const getTransactions = async (req: Request, res: Response) => {
       transactions,
       total,
     });
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
+};
+
+export const getGeography = async (req: Request, res: Response) => {
+  try {
+    const users = await User.find();
+
+    const mappedLocations = users.reduce((acc: { [key: string]: any }, { country }) => {
+      const countryISO3 = getCountryISO3(country as string);
+
+      if (!acc.hasOwnProperty(countryISO3)) {
+        acc[countryISO3] = 0;
+      }
+
+      acc[countryISO3]++;
+      return acc;
+    }, {});
+
+    const formattedLocations = Object.entries(mappedLocations).map(([country, count]) => {
+      return { id: country, value: count };
+    });
+
+    res.status(200).json(formattedLocations);
   } catch (error) {
     res.status(404).json({ message: error });
   }
