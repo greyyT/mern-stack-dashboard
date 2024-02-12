@@ -1,6 +1,6 @@
 import { Box, Divider, Typography } from '@mui/material';
 
-import FlexBetween from '@/components/flex-between';
+import FlexBetween from '@/components/ui/flex-between';
 import { profileImage } from '@/assets';
 import { SettingsOutlined } from '@mui/icons-material';
 

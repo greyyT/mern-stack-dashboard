@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Button, Menu, MenuItem, Typography, useTheme } from '@mui/material';
 
-import FlexBetween from '../flex-between';
+import FlexBetween from '@/components/ui/flex-between';
 import { profileImage } from '@/assets';
 import { ArrowDropDownOutlined } from '@mui/icons-material';
 

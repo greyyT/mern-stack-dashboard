@@ -4,7 +4,7 @@ import {
   GridToolbarDensitySelector,
   GridToolbarExport,
 } from '@mui/x-data-grid';
-import FlexBetween from './flex-between';
+import FlexBetween from './ui/flex-between';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { Search } from '@mui/icons-material';
 

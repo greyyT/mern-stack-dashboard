@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import FlexBetween from '../flex-between';
+import FlexBetween from '@/components/ui/flex-between';
 import { IconButton } from '@mui/material';
 import { setMode } from '@/state';
 import { DarkModeOutlined, LightModeOutlined, SettingsOutlined } from '@mui/icons-material';

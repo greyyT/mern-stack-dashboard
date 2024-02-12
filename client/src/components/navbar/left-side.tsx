@@ -1,5 +1,5 @@
 import { IconButton, InputBase } from '@mui/material';
-import FlexBetween from '../flex-between';
+import FlexBetween from '@/components/ui/flex-between';
 import { Menu, Search } from '@mui/icons-material';
 
 interface LeftSideProps {

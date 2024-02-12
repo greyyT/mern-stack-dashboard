@@ -1,5 +1,5 @@
 import { Box, IconButton, Typography } from '@mui/material';
-import FlexBetween from '../flex-between';
+import FlexBetween from '@/components/ui/flex-between';
 import { ChevronLeft } from '@mui/icons-material';
 
 interface SidebarHeaderProps {
