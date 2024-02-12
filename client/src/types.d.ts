@@ -70,3 +70,23 @@ export interface Transactions {
   transactions: Transaction[];
   total: number;
 }
+
+// SALES TYPES
+interface Sales {
+  _id: string;
+  totalCustomers: number;
+  yearlySalesTotal: number;
+  yearlyTotalSoldUnits: number;
+  year: number;
+  monthlyData: ProductMonthlyStat[];
+  dailyData: ProductDailyStat[];
+  salesByCategory: {
+    shoes: number;
+    clothing: number;
+    accessories: number;
+    misc: number;
+  };
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
