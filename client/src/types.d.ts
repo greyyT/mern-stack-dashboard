@@ -90,3 +90,20 @@ interface Sales {
   updatedAt: string;
   __v: number;
 }
+
+// PERFORMANCE TYPES
+
+interface UserWithStats extends UserProfile {
+  affiliateStats: {
+    _id: string;
+    userId: string;
+    affiliateSales: string[];
+    __v: number;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
+export interface UserPerformance {
+  user: UserWithStats;
+  sales: Transaction[];
+}
