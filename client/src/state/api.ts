@@ -1,31 +1,35 @@
-import { ProductWithStats, Sales, Transactions, UserPerformance, UserProfile } from '@/types';
+import { Dashboard, ProductWithStats, Sales, Transactions, UserPerformance, UserProfile } from '@/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_REACT_APP_BASE_URL as string }),
   reducerPath: 'adminApi',
-  tagTypes: ['User', 'Products', 'Customers', 'Transactions', 'Geography', 'Sales', 'Admins', 'Performance'],
+  tagTypes: [
+    'User',
+    'Products',
+    'Customers',
+    'Transactions',
+    'Geography',
+    'Sales',
+    'Admins',
+    'Performance',
+    'Dashboard',
+  ],
   endpoints: (build) => ({
     getUser: build.query({
       query: (id: string) => `general/user/${id}`,
       providesTags: ['User'],
-      transformResponse: (res: UserProfile) => {
-        return res;
-      },
+      transformResponse: (res: UserProfile) => res,
     }),
     getProducts: build.query({
       query: () => 'client/products',
       providesTags: ['Products'],
-      transformResponse: (res: ProductWithStats[]) => {
-        return res;
-      },
+      transformResponse: (res: ProductWithStats[]) => res,
     }),
     getCustomers: build.query({
       query: () => 'client/customers',
       providesTags: ['Customers'],
-      transformResponse: (res: UserProfile[]) => {
-        return res;
-      },
+      transformResponse: (res: UserProfile[]) => res,
     }),
     getTransactions: build.query({
       query: ({ page, pageSize, sort, search }) => ({
@@ -34,9 +38,7 @@ export const api = createApi({
         params: { page, pageSize, sort, search },
       }),
       providesTags: ['Transactions'],
-      transformResponse: (res: Transactions) => {
-        return res;
-      },
+      transformResponse: (res: Transactions) => res,
     }),
     getGeography: build.query({
       query: () => 'client/geography',
@@ -45,9 +47,7 @@ export const api = createApi({
     getSales: build.query({
       query: () => 'sales/sales',
       providesTags: ['Sales'],
-      transformResponse: (res: Sales) => {
-        return res;
-      },
+      transformResponse: (res: Sales) => res,
     }),
     getAdmins: build.query({
       query: () => 'management/admins',
@@ -58,6 +58,11 @@ export const api = createApi({
       query: (id: string) => `management/performance/${id}`,
       providesTags: ['Performance'],
       transformResponse: (res: UserPerformance) => res,
+    }),
+    getDashboard: build.query({
+      query: () => 'general/dashboard',
+      providesTags: ['Dashboard'],
+      transformResponse: (res: Dashboard) => res,
     }),
   }),
 });
@@ -71,4 +76,5 @@ export const {
   useGetSalesQuery,
   useGetAdminsQuery,
   useGetUserPerformanceQuery,
+  useGetDashboardQuery,
 } = api;

@@ -107,3 +107,20 @@ export interface UserPerformance {
   user: UserWithStats;
   sales: Transaction[];
 }
+
+// DASHBOARD TYPES
+export interface Dashboard {
+  totalCustomers: number;
+  yearlySalesTotal: number;
+  yearlyTotalSoldUnits: number;
+  monthlyData: ProductMonthlyStat[];
+  salesByCategory: {
+    shoes: number;
+    clothing: number;
+    accessories: number;
+    misc: number;
+  };
+  thisMonthStats: ProductMonthlyStat;
+  todayStats: ProductDailyStat;
+  transactions: Transaction[];
+}
