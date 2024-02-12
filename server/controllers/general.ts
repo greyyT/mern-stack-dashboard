@@ -1,5 +1,8 @@
-import User from '../models/User';
 import { Request, Response } from 'express';
+
+import User from '../models/User';
+import OverallStat from '../models/OverallStat';
+import Transaction from '../models/Transaction';
 
 export const getUser = async (req: Request, res: Response) => {
   try {
@@ -7,6 +10,40 @@ export const getUser = async (req: Request, res: Response) => {
     const user = await User.findById(id).select('-password');
 
     res.status(200).json(user);
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const getDashboardStats = async (req: Request, res: Response) => {
+  try {
+    // Hardcoded value
+    const currentMonth = 'November';
+    const currentYear = 2021;
+    const currentDay = '2021-11-15';
+
+    // Recent Transactions
+    const transactions = await Transaction.find().limit(50).sort({ createdOn: -1 });
+
+    // Overall Stats
+    const overallStat = await OverallStat.find({ year: currentYear });
+
+    const { totalCustomers, yearlyTotalSoldUnits, yearlySalesTotal, monthlyData, salesByCategory } = overallStat[0];
+
+    const thisMonthStats = overallStat[0].monthlyData.find(({ month }) => month === currentMonth);
+
+    const todayStats = overallStat[0].dailyData.find(({ date }) => date === currentDay);
+
+    res.status(200).json({
+      totalCustomers,
+      yearlyTotalSoldUnits,
+      yearlySalesTotal,
+      monthlyData,
+      salesByCategory,
+      thisMonthStats,
+      todayStats,
+      transactions,
+    });
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
