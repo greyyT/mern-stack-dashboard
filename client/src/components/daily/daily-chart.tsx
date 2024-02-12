@@ -10,7 +10,7 @@ interface DailyChartProps {
 
 const DailyChart = ({ startDate, endDate }: DailyChartProps) => {
   const theme = useTheme() as any;
-  const { data } = useGetSalesQuery(null);
+  const { data, isLoading } = useGetSalesQuery(null);
 
   const [formattedData] = useMemo(() => {
     if (!data) return [];
@@ -41,6 +41,8 @@ const DailyChart = ({ startDate, endDate }: DailyChartProps) => {
 
     return [formattedData];
   }, [data, startDate, endDate]); // eslint-disable-line
+
+  if (!data || isLoading) return 'Loading...';
 
   return (
     <ResponsiveLine
