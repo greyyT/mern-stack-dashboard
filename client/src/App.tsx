@@ -6,7 +6,18 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { themeSettings } from './theme';
 import { MainLayout } from './layouts';
-import { Breakdown, Customers, Daily, Dashboard, Geography, Monthly, Overview, Products, Transactions } from './pages';
+import {
+  Admin,
+  Breakdown,
+  Customers,
+  Daily,
+  Dashboard,
+  Geography,
+  Monthly,
+  Overview,
+  Products,
+  Transactions,
+} from './pages';
 
 const App = () => {
   const mode = useSelector((state: any) => state.global.mode);
@@ -29,6 +40,7 @@ const App = () => {
               <Route path="/daily" element={<Daily />} />
               <Route path="/monthly" element={<Monthly />} />
               <Route path="/breakdown" element={<Breakdown />} />
+              <Route path="/admin" element={<Admin />} />
             </Route>
           </Routes>
         </ThemeProvider>
