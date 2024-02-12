@@ -23,8 +23,8 @@ export const getProducts = async (req: Request, res: Response) => {
     );
 
     res.status(200).json(productsWithStats);
-  } catch (error) {
-    res.status(404).json({ message: error });
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -33,8 +33,8 @@ export const getCustomers = async (req: Request, res: Response) => {
     const customers = await User.find({ role: 'user' }).select('-password');
 
     res.status(200).json(customers);
-  } catch (error) {
-    res.status(404).json({ message: error });
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -76,8 +76,8 @@ export const getTransactions = async (req: Request, res: Response) => {
       transactions,
       total,
     });
-  } catch (error) {
-    res.status(404).json({ message: error });
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -101,7 +101,7 @@ export const getGeography = async (req: Request, res: Response) => {
     });
 
     res.status(200).json(formattedLocations);
-  } catch (error) {
-    res.status(404).json({ message: error });
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
   }
 };
