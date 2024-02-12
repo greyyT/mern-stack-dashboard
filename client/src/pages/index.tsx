@@ -5,5 +5,6 @@ import Transactions from './transactions';
 import Geography from './geography';
 import Overview from './overview';
 import Daily from './daily';
+import Monthly from './monthly';
 
-export { Dashboard, Products, Customers, Transactions, Geography, Overview, Daily };
+export { Dashboard, Products, Customers, Transactions, Geography, Overview, Daily, Monthly };
