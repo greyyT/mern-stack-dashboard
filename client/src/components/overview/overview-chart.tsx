@@ -88,6 +88,7 @@ const OverviewChart = ({ isDashboard = false, view }: { isDashboard?: boolean; v
       }}
       yFormat=" >-.2f"
       curve="catmullRom"
+      enableArea={isDashboard}
       axisTop={null}
       axisRight={null}
       axisBottom={{
@@ -103,6 +104,7 @@ const OverviewChart = ({ isDashboard = false, view }: { isDashboard?: boolean; v
         legendPosition: 'middle',
       }}
       axisLeft={{
+        tickValues: 5,
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
