@@ -1,10 +1,10 @@
-import { ProductWithStats, Sales, Transactions, UserProfile } from '@/types';
+import { ProductWithStats, Sales, Transactions, UserPerformance, UserProfile } from '@/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_REACT_APP_BASE_URL as string }),
   reducerPath: 'adminApi',
-  tagTypes: ['User', 'Products', 'Customers', 'Transactions', 'Geography', 'Sales', 'Admins'],
+  tagTypes: ['User', 'Products', 'Customers', 'Transactions', 'Geography', 'Sales', 'Admins', 'Performance'],
   endpoints: (build) => ({
     getUser: build.query({
       query: (id: string) => `general/user/${id}`,
@@ -54,6 +54,11 @@ export const api = createApi({
       providesTags: ['Admins'],
       transformResponse: (res: UserProfile[]) => res,
     }),
+    getUserPerformance: build.query({
+      query: (id: string) => `management/performance/${id}`,
+      providesTags: ['Performance'],
+      transformResponse: (res: UserPerformance) => res,
+    }),
   }),
 });
 
@@ -65,4 +70,5 @@ export const {
   useGetGeographyQuery,
   useGetSalesQuery,
   useGetAdminsQuery,
+  useGetUserPerformanceQuery,
 } = api;
